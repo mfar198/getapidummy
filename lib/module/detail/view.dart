@@ -31,8 +31,6 @@ class DetailView extends GetView<DetailController> {
   }
 
   Widget _buildScrollableContent() {
-  final user = controller.getUserById(controller.userId2); // Fetch the ListModel using userId
-
   return DraggableScrollableSheet(
     initialChildSize: 0.7,
     maxChildSize: 1.0,
@@ -50,19 +48,29 @@ class DetailView extends GetView<DetailController> {
         ),
         child: SingleChildScrollView(
           controller: scrollController,
-          child: Column(
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: NetworkImage(user.avatar),
-              ),
-              Text('Name: ${user.firstName} ${user.lastName}'),
-              Text('Email: ${user.email}'),
-            ],
-          ),
+          child: Obx(() {
+            final userList = controller.userList;
+            if (userList.isEmpty) {
+              return Center(
+                child: Text('No users available.'),
+              );
+            } else {
+              final user = userList[0]; // Assuming you want to display the first user
+              return Column(
+                children: [
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundImage: NetworkImage(user.avatar),
+                  ),
+                  Text('Name: ${user.firstName} ${user.lastName}'),
+                  Text('Email: ${user.email}'),
+                ],
+              );
+            }
+          }),
         ),
       );
     },
   );
 }
-  }
+}

@@ -17,12 +17,13 @@ import '../../model/model.dart';
 }**/
 
 class DetailController extends GetxController {
-  final int userId;
+  //final int userId;
+  late ListModel listModel;
   final RxList<ListModel> userList = <ListModel>[].obs;
 
-  final userId2 = Get.arguments as int;
+  final userId = Get.arguments as int;
 
-  DetailController({required this.userId});
+  //DetailController({required this.userId});
 
   @override
   void onInit() {
@@ -56,7 +57,15 @@ class DetailController extends GetxController {
     }
   }**/
 
-  ListModel getUserById(int userId2){
-    return userList.firstWhere((user) => user.id == userId2);
+  Future<void> getUserById(int userId) async {
+    final response = await ApiService.getUserById(userId);
+    final userData = response['data'];
+
+    if (userData != null) {
+      final userModel = ListModel.fromJson(userData);
+      
+      userList.clear();
+      userList.add(userModel);
+    }
   }
 }

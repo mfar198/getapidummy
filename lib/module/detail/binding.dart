@@ -34,7 +34,7 @@ class DetailBinding implements Bindings {
   final userId = Get.arguments as int;
   @override
   void dependencies() {
-    Get.lazyPut(() => DetailController(userId: userId));
+    Get.lazyPut(() => DetailController());
   }
 }
 
