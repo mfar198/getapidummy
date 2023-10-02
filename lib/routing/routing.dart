@@ -31,6 +31,7 @@ class AppRouter {
       transitionDuration: const Duration(seconds: 1),
     ),
     //detail
+    
     GetPage(
       name: AppLinks.detail,
       page: () =>  const DetailView(),
@@ -38,5 +39,6 @@ class AppRouter {
       transition: Transition.fade,
       transitionDuration: const Duration(seconds: 1),
     ),
+    
   ];
 }

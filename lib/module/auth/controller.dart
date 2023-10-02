@@ -27,6 +27,7 @@ class AuthController extends GetxController {
 
   Future<void> login(String email, String password) async {
     final response = await ApiService.loginUser(email, password);
+    //if (password == 'cityslicka' && response.containsKey('token')) {
     if (response.containsKey('token')) {
       await storage.write(
           key: 'token', value: response['token']); // Store token securely
@@ -53,18 +54,9 @@ class AuthController extends GetxController {
     }
   }
 
-  /**Future<void> checkLoginStatus() async {
-    final token = await storage.read(key: 'token'); // Read token from storage
-    if (token != null){
-      isLoggedIn.value = true;
-    } else {
-      await Get.toNamed(AppLinks.login);
-    }
-    //isLoggedIn.value = token != null;
-  }**/
-
   void logout() async {
     await storage.delete(key: 'token'); // Remove token from storage
     isLoggedIn.value = false;
+    Get.offNamed(AppLinks.login);
   }
 }

@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:getapidummy/routing/routing.dart';
+import 'package:getapidummy/module/auth/controller.dart';
 
 import '../../widget/widget.dart';
+
 import 'controller.dart';
 
 class ListsView extends GetView<ListController>{
@@ -11,6 +12,19 @@ class ListsView extends GetView<ListController>{
   @override
   Widget build(BuildContext context) {
     return MainWrap(
+      appBar: CustomAppBar(
+        title: const Text('List User'),
+        actions: [
+          IconButton(
+          icon: const Icon(Icons.logout),
+          onPressed: () {
+            Get.find<AuthController>().logout();
+          },
+        ),
+        ],
+      ),
+      showLogoutButton: true,
+      onLogoutPressed: () => AuthController(),
       padding: const EdgeInsets.all(16),
       body: Obx(() {
         if(controller.userList.isEmpty){
