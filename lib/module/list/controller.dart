@@ -3,6 +3,7 @@ import 'package:getapidummy/routing/routing.dart';
 
 import '../../service/service.dart';
 import '../../model/model.dart';
+import '../auth/controller.dart';
 
 class ListController extends GetxController {
   final RxList<ListModel> userList = <ListModel>[].obs;
@@ -25,5 +26,9 @@ class ListController extends GetxController {
 
   Future<void> goToDetails(int userId) async {
     await Get.toNamed(AppLinks.detail, arguments: userId);
+  }
+
+  void logout(){
+    Get.find<AuthController>().logout();
   }
 }

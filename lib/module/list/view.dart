@@ -13,17 +13,7 @@ class ListsView extends GetView<ListController>{
   Widget build(BuildContext context) {
     return MainWrap(
       padding: EdgeInsets.zero,
-      appBar: CustomAppBar(
-        title: const Text('List User'),
-        actions: [
-          IconButton(
-          icon: const Icon(Icons.logout),
-          onPressed: () {
-            Get.find<AuthController>().logout();
-          },
-        ),
-        ],
-      ),
+      appBar:  const MyAppBar(title: Text('List User')),
       showLogoutButton: true,
       onLogoutPressed: () => AuthController(),
       body: Obx(() {
