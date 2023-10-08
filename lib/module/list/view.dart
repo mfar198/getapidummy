@@ -12,6 +12,7 @@ class ListsView extends GetView<ListController>{
   @override
   Widget build(BuildContext context) {
     return MainWrap(
+      padding: EdgeInsets.zero,
       appBar: CustomAppBar(
         title: const Text('List User'),
         actions: [
@@ -25,7 +26,6 @@ class ListsView extends GetView<ListController>{
       ),
       showLogoutButton: true,
       onLogoutPressed: () => AuthController(),
-      padding: const EdgeInsets.all(16),
       body: Obx(() {
         if(controller.userList.isEmpty){
           return const Center(
@@ -38,7 +38,6 @@ class ListsView extends GetView<ListController>{
             final user = controller.userList[index];
             return GestureDetector(
               onTap: () async {
-                print(user.id);
                 controller.goToDetails(user.id);
               },
               child: ListTile(

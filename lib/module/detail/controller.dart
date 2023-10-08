@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:getapidummy/routing/routing.dart';
 
 import '../list/controller.dart';
 
@@ -30,7 +31,6 @@ class DetailController extends GetxController {
     super.onInit();
     final userId = Get.arguments as int;
     getUserById(userId);
-    print('Current user Id on Init: $userId');
     // Fetch the user list if it hasn't been fetched yet.
     if (userList.isEmpty) {
       fetchUserList();
@@ -45,18 +45,6 @@ class DetailController extends GetxController {
     userList.assignAll(userData.map((data) => ListModel.fromJson(data)));
   }
 
-  // Get the user by ID with error handling
-  /**ListModel? getUserById(int userId) {
-    try {
-      print('User id in the list model is $userId');
-      return userList.firstWhereOrNull((user) => user.id == userId);
-    } catch (e) {
-      // Handle the case where the user is not found.
-      print('User with ID $userId not found.');
-      return null;
-    }
-  }**/
-
   Future<void> getUserById(int userId) async {
     final response = await ApiService.getUserById(userId);
     final userData = response['data'];
@@ -67,5 +55,9 @@ class DetailController extends GetxController {
       userList.clear();
       userList.add(userModel);
     }
+  }
+
+  void goToList() {
+    Get.offNamed(AppLinks.list);
   }
 }

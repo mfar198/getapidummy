@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:getapidummy/constant/color.dart';
 
 import '../../model/model.dart';
 import 'controller.dart';
@@ -13,16 +14,25 @@ class DetailView extends GetView<DetailController> {
   @override
   Widget build(BuildContext context) {
     return MainWrap(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.zero,
       body: Stack(
         children: [
           SizedBox(
             width: double.infinity,
-            height: 260.h,
+            height: 280.h,
             child: Image.network(
               'https://4kwallpapers.com/images/wallpapers/scenery-landscape-mountains-lake-evening-reflections-scenic-2048x1536-8821.jpg',
               fit: BoxFit.cover,
             ),
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(padding: const EdgeInsets.only(left: 16, top: 40),
+            child: Row(
+              children: [
+                IconButton(onPressed: controller.goToList, icon: const Icon(Icons.arrow_back_ios,color: Colors.white,))
+              ],
+            ),),
           ),
           _buildScrollableContent(),
         ],
@@ -40,7 +50,7 @@ class DetailView extends GetView<DetailController> {
         padding: const EdgeInsets.all(25),
         clipBehavior: Clip.hardEdge,
         decoration: const BoxDecoration(
-          color: Colors.lightBlue,
+          color: color1,
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
             topRight: Radius.circular(25),
@@ -51,19 +61,24 @@ class DetailView extends GetView<DetailController> {
           child: Obx(() {
             final userList = controller.userList;
             if (userList.isEmpty) {
-              return Center(
-                child: Text('No users available.'),
+              return const Center(
+                child: Text('No users available.',style: TextStyle(fontSize: 16, color: Colors.white,fontWeight: FontWeight.bold),),
               );
             } else {
               final user = userList[0]; // Assuming you want to display the first user
               return Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  const SizedBox(height: 50,),
                   CircleAvatar(
                     radius: 50,
                     backgroundImage: NetworkImage(user.avatar),
                   ),
-                  Text('Name: ${user.firstName} ${user.lastName}'),
-                  Text('Email: ${user.email}'),
+                  const SizedBox(height: 20,),
+                  Text('Name: ${user.firstName} ${user.lastName}',style: const TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.bold),),
+                  const SizedBox(height: 10,),
+                  Text('Email: ${user.email}', style: const TextStyle(fontSize: 14, color: Colors.white,fontWeight: FontWeight.bold),),
+                
                 ],
               );
             }
