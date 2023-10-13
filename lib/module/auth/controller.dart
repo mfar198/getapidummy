@@ -17,11 +17,13 @@ class AuthController extends GetxController {
 
   Future<void> init() async {
     final token = await storage.read(key: 'token');
-    if(token != null) {
-      isLoggedIn.value = true;
-      Get.offNamed(AppLinks.list);
+    if(token == null) {
+      await Get.offNamed(AppLinks.login);
+      return;
     } else {
-      Get.offNamed(AppLinks.login);
+      isLoggedIn.value = true;
+      await Get.offNamed(AppLinks.list);
+      return;
     }
   }
 

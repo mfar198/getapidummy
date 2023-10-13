@@ -1,21 +1,8 @@
 import 'package:get/get.dart';
 import 'package:getapidummy/routing/routing.dart';
 
-import '../list/controller.dart';
-
 import '../../service/service.dart';
 import '../../model/model.dart';
-
-/**class DetailController extends GetxController {
-  final int userId;
-  final RxList<ListModel> userList = <ListModel>[].obs;
-
-  DetailController({required this.userId});
-
-  ListModel? getUserById(int userId) {
-    return userList.firstWhere((user) => user.id == userId);
-  }
-}**/
 
 class DetailController extends GetxController {
   //final int userId;

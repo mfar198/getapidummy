@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'module/auth/controller.dart';
 import 'module/module.dart';
 import 'routing/routing.dart';
 
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
     builder: (context, _) => GetMaterialApp(
       debugShowCheckedModeBanner: false,
       initialBinding: AuthBinding(),
-      initialRoute: AppLinks.login,
+      initialRoute: AppLinks.splash,
       getPages: AppRouter.pages,
     ),);
   }

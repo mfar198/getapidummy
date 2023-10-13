@@ -6,6 +6,14 @@ part 'link.dart';
 
 class AppRouter {
   static final List<GetPage> pages = [
+    //splash
+    GetPage(
+      name: AppLinks.splash,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(seconds: 1),
+    ),
     //login
     GetPage(
       name: AppLinks.login,
@@ -31,7 +39,6 @@ class AppRouter {
       transitionDuration: const Duration(seconds: 1),
     ),
     //detail
-    
     GetPage(
       name: AppLinks.detail,
       page: () =>  const DetailView(),
@@ -39,6 +46,5 @@ class AppRouter {
       transition: Transition.fade,
       transitionDuration: const Duration(seconds: 1),
     ),
-    
   ];
 }

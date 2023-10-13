@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:getapidummy/constant/color.dart';
 
-import '../../model/model.dart';
 import 'controller.dart';
 
 import '../../widget/mainwrap.dart';
