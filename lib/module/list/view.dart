@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:getapidummy/module/auth/controller.dart';
 
 import '../../widget/widget.dart';
+
+import '../auth/controller.dart';
 
 import 'controller.dart';
 
@@ -12,6 +13,7 @@ class ListsView extends GetView<ListController>{
   @override
   Widget build(BuildContext context) {
     return MainWrap(
+      backgroundColor: Theme.of(context).colorScheme.background,
       padding: EdgeInsets.zero,
       appBar:  const MyAppBar(title: Text('List User')),
       showLogoutButton: true,

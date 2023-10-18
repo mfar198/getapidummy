@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getapidummy/routing/routing.dart';
 
 import '../auth/controller.dart';
+
+import '../../routing/routing.dart';
 
 class LoginController extends GetxController {
   

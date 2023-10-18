@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:getapidummy/constant/color.dart';
 
 import 'controller.dart';
 
 import '../../widget/mainwrap.dart';
+import '../../constant/constant.dart';
 
 class DetailView extends GetView<DetailController> {
   const DetailView({super.key});
@@ -13,6 +13,7 @@ class DetailView extends GetView<DetailController> {
   @override
   Widget build(BuildContext context) {
     return MainWrap(
+      backgroundColor: Theme.of(context).colorScheme.background,
       padding: EdgeInsets.zero,
       body: Stack(
         children: [

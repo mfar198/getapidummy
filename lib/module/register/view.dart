@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../theme/theme_button.dart';
 import '../../widget/mainwrap.dart';
 import '../../constant/constant.dart';
 
@@ -12,13 +13,25 @@ class RegisterView extends GetView<RegisterController> {
 
   @override
   Widget build(BuildContext context){
+    bool isDarkMode = Theme.of(context).brightness == Brightness.dark;
     return MainWrap(
+      backgroundColor: Theme.of(context).colorScheme.background,
       padding: const EdgeInsets.all(16),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset('assets/image/register-header.jpg', fit: BoxFit.contain, width: 350.w, height: 220.h,),
-          const SizedBox(height: 10,),
+        //mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          const SizedBox(height: 20,),
+          const ThemeButton(),
+          const SizedBox(height: 40,),
+          Image.asset(
+              isDarkMode
+                  ? 'assets/image/logo.png'
+                  : 'assets/image/logo-dark.png',
+              fit: BoxFit.contain,
+              width: 200,
+              height: 110,
+            ),
+          const SizedBox(height: 20,),
           Container(
                     alignment: Alignment.centerLeft,
                     child: const Text('Register',style: TextStyle(fontSize: 26, fontWeight: FontWeight.w900, color: color1), textAlign: TextAlign.start,)),
@@ -46,7 +59,7 @@ class RegisterView extends GetView<RegisterController> {
             height: 40.h,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                      primary: color1,
+                      backgroundColor: color1,
                       shadowColor: Colors.grey,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(15)
@@ -64,7 +77,14 @@ class RegisterView extends GetView<RegisterController> {
               },
               child: const Text('Register'),
             ),
-          )
+          ),
+          const SizedBox(height: 15,),
+          GestureDetector(
+          onTap: () {
+            controller.goToLogin();
+          },
+          child: const Text('Already have an account? Login here', style: TextStyle(fontSize: 14,),) ,
+          ),
         ],
       ),
     );
